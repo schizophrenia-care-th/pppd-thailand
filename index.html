@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPPD Thailand Society - ชุมชนและแหล่งข้อมูลโรคเวียนศีรษะเรื้อรัง</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Font: Prompt & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                        },
+                        softblue: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        neutralbg: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Prompt', 'Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Prompt', 'Inter', sans-serif;
+            background-color: #f8fafc;
+            color: #334155;
+            /* Anti-dizziness: subtle smoothing */
+            -webkit-font-smoothing: antialiased;
+        }
+        .btn-gentle {
+            transition: background-color 0.2s ease, border-color 0.2s ease;
+        }
+        /* Ensure no text overlapping across different line heights */
+        h1, h2, h3, h4 {
+            word-break: break-word;
+            overflow-wrap: break-word;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between text-slate-700 bg-slate-50">
+
+    <!-- Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-teal-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20 items-center">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-500 to-sky-400 flex items-center justify-center text-white font-bold text-xl shadow-sm shrink-0">
+                        <i class="fa-solid font-bold fa-heart-pulse"></i>
+                    </div>
+                    <div>
+                        <span class="text-lg sm:text-xl font-bold text-slate-800 tracking-normal block leading-tight">PPPD Thailand</span>
+                        <span class="text-xs text-teal-600 font-medium tracking-wide block mt-0.5">Society & Community</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#about" class="text-slate-600 hover:text-teal-600 py-2 transition-colors">เกี่ยวกับโรค</a>
+                    <a href="#assessment" class="text-slate-600 hover:text-teal-600 py-2 transition-colors">ประเมินอาการ</a>
+                    <a href="#rehab" class="text-slate-600 hover:text-teal-600 py-2 transition-colors">การดูแลและฟื้นฟู</a>
+                    <a href="#community" class="text-slate-600 hover:text-teal-600 py-2 transition-colors">แบ่งปันประสบการณ์</a>
+                    <a href="#hospitals" class="text-slate-600 hover:text-teal-600 py-2 transition-colors">ศูนย์รักษาในไทย</a>
+                </nav>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" type="button" class="text-slate-600 hover:text-teal-600 focus:outline-none p-2 rounded-lg" aria-label="Toggle menu">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-4 space-y-2 text-sm font-medium">
+            <a href="#about" class="block py-2 text-slate-600 hover:text-teal-600 border-b border-slate-50">เกี่ยวกับโรค</a>
+            <a href="#assessment" class="block py-2 text-slate-600 hover:text-teal-600 border-b border-slate-50">ประเมินอาการ</a>
+            <a href="#rehab" class="block py-2 text-slate-600 hover:text-teal-600 border-b border-slate-50">การดูแลและฟื้นฟู</a>
+            <a href="#community" class="block py-2 text-slate-600 hover:text-teal-600 border-b border-slate-50">แบ่งปันประสบการณ์</a>
+            <a href="#hospitals" class="block py-2 text-slate-600 hover:text-teal-600">ศูนย์รักษาในไทย</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- Hero Section -->
+        <section class="relative bg-gradient-to-b from-teal-50/80 via-sky-50/40 to-slate-50 py-12 sm:py-16 md:py-24 border-b border-teal-50">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-teal-100/80 text-teal-800 mb-6 border border-teal-200">
+                    <i class="fa-solid fa-shield-heart"></i> พื้นที่ปลอดภัยและแหล่งข้อมูลผู้ป่วย PPPD ในไทย
+                </span>
+                
+                <!-- Fixed Line Height & Spacing for Hero Heading -->
+                <h1 class="text-xl sm:text-3xl md:text-4xl lg:text-[2.6rem] font-bold text-slate-800 tracking-normal leading-relaxed sm:leading-snug md:leading-normal mb-6">
+                    <span class="block mb-2 text-slate-700">คุณไม่ได้โดดเดี่ยว...</span>
+                    <span class="text-teal-600 inline-block font-bold">เวียนศีรษะเรื้อรัง ฟื้นฟูและกลับมาสดใสได้อีกครั้ง</span>
+                </h1>
+                
+                <p class="text-sm sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed mb-8 font-light">
+                    ทำความเข้าใจโรค PPPD (Persistent Postural-Perceptual Dizziness) เรียนรู้วิธีฝึกกายภาพฟื้นฟูการทรงตัว
+                    และแบ่งปันกำลังใจร่วมกับเพื่อนๆ ที่เข้าใจคุณที่สุด
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+                    <a href="#about" class="btn-gentle inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-teal-600 text-white font-medium shadow-md hover:bg-teal-700 focus:ring-2 focus:ring-teal-400 focus:outline-none text-sm sm:text-base">
+                        <i class="fa-solid fa-book-open mr-2"></i> ทำความรู้จักโรค PPPD
+                    </a>
+                    <a href="#assessment" class="btn-gentle inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white text-teal-700 font-medium border border-teal-200 shadow-sm hover:bg-teal-50 focus:ring-2 focus:ring-teal-400 focus:outline-none text-sm sm:text-base">
+                        <i class="fa-solid fa-clipboard-check mr-2"></i> ทำแบบประเมินอาการ
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 1: PPPD คืออะไร -->
+        <section id="about" class="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-12">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 leading-snug mb-3">PPPD คืออะไร?</h2>
+                <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                    Persistent Postural-Perceptual Dizziness คือกลุ่มอาการเวียนศีรษะเรื้อรังที่เกี่ยวข้องกับการทำงานของระบบประสาทสมองและระบบการทรงตัว
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <!-- Box 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-cloud"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800 leading-snug mb-2">ลักษณะอาการสำคัญ</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        รู้สึกโคลงเคลง เหมือนอยู่บนเรือ โหวงๆ หรือหัวเบาๆ ไม่มั่นคง อาการมักเป็นเรื้อรังติดต่อกันเกิน 3 เดือน โดยไม่มีอาการบ้านหมุน (Spinning)
+                    </p>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-person-walking"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800 leading-snug mb-2">สิ่งกระตุ้น (Triggers)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        อาการมักแย่ลงเมื่อ **ยืนหรือเดิน**, การเคลื่อนไหวร่างกาย หรือเมื่ออยู่ในสถานที่ที่มีสิ่งกระตุ้นทางสายตามากๆ (Visual Motion) เช่น ซูเปอร์มาร์เก็ต
+                    </p>
+                </div>
+
+                <!-- Box 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <h3 class="text-lg font-semibold text-slate-800 leading-snug mb-2">สาเหตุการเกิดโรค</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        มักเริ่มต้นตามหลังเหตุการณ์นำ เช่น โรคน้ำในหูไม่เท่ากัน, หินปูนในหูชั้นในหลุด, โรคไมเกรน หรือความเครียดตื่นตระหนก ทำให้สมองตื่นตัวและปรับระบบการทรงตัวผิดปกติ
+                    </p>
+                </div>
+            </div>
+
+            <!-- Visual sensitivity callout -->
+            <div class="mt-8 bg-sky-50/60 border border-sky-100 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+                <div class="p-3 bg-white rounded-xl text-sky-600 shadow-sm shrink-0">
+                    <i class="fa-solid fa-eye text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-slate-800 text-base leading-snug">ทำไมการจ้องจอมือถือหรือเดินห้างถึงเวียนศีรษะ?</h4>
+                    <p class="text-sm text-slate-600 mt-1.5 leading-relaxed">
+                        สมองของผู้ป่วย PPPD พึ่งพา "สายตา" มากเกินไปในการประมวลผลการทรงตัว เมื่อเจอภาพเลื่อนเร็ว แสงไฟกะพริบ หรือลวดลายซับซ้อน สมองจึงประมวลผลไม่ทันและเกิดอาการโคลงเคลงนั่นเอง
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: แบบประเมินอาการเบื้องต้น -->
+        <section id="assessment" class="py-12 sm:py-16 bg-slate-100/70 border-y border-slate-200/60">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-8">
+                    <span class="text-xs font-semibold tracking-wider text-teal-600 uppercase bg-teal-100/80 px-3 py-1 rounded-full">Interactive Assessment</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mt-3 mb-2 leading-snug">แบบประเมินความเสี่ยง PPPD เบื้องต้น</h2>
+                    <p class="text-sm text-slate-600 leading-relaxed">ตอบคำถาม 5 ข้อต่อไปนี้เพื่อประเมินความเข้าข่ายของอาการ (ไม่ใช่การวินิจฉัยทางการแพทย์)</p>
+                </div>
+
+                <!-- Quiz Card Container -->
+                <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+                    <form id="quiz-form" onsubmit="return false;">
+                        <!-- Question 1 -->
+                        <div class="mb-6 pb-6 border-b border-slate-100">
+                            <label class="font-medium text-slate-800 block mb-3 text-sm sm:text-base leading-relaxed">
+                                1. คุณมีอาการโคลงเคลง รู้สึกเหมือนอยู่บนเรือ หรือหัวเบาๆ ติดต่อกันเป็นส่วนใหญ่เกือบทุกวัน เกิน 3 เดือนหรือไม่?
+                            </label>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q1" value="1" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ใช่ เป็นบ่อย/เกือบทุกวัน</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q1" value="0" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ไม่ใช่ / นานๆ ครั้ง</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="mb-6 pb-6 border-b border-slate-100">
+                            <label class="font-medium text-slate-800 block mb-3 text-sm sm:text-base leading-relaxed">
+                                2. อาการมักจะแย่ลงอย่างชัดเจนเมื่อ **ยืน หรือ เดิน** เมื่อเทียบกับการนั่งหรือนอนราบ?
+                            </label>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q2" value="1" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ใช่ ยืน/เดิน แล้วมักแย่ลง</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q2" value="0" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ไม่ใช่ อาการเหมือนเดิมทุกท่า</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="mb-6 pb-6 border-b border-slate-100">
+                            <label class="font-medium text-slate-800 block mb-3 text-sm sm:text-base leading-relaxed">
+                                3. อาการกำเริบหรือรุนแรงขึ้นเมื่ออยู่ในสถานที่ที่มีสิ่งกระตุ้นสายตา เช่น ซูเปอร์มาร์เก็ต, ทางเดินที่มีคนเยอะ, การเลื่อนหน้าจอมือถือ?
+                            </label>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q3" value="1" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ใช่ มีผลกระทบชัดเจน</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q3" value="0" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ไม่มีผลกระทบ</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="mb-6 pb-6 border-b border-slate-100">
+                            <label class="font-medium text-slate-800 block mb-3 text-sm sm:text-base leading-relaxed">
+                                4. คุณเคยมีประวัติหมุนรุนแรง, หินปูนในหูหลุด, น้ำในหูไม่เท่ากัน หรือเครียดกังวลรุนแรง ก่อนหน้าที่จะเริ่มมีอาการโคลงเคลงเรื้อรังหรือไม่?
+                            </label>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q4" value="1" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>เคยมีเหตุการณ์กระตุ้น</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q4" value="0" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ไม่เคยมี</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Question 5 -->
+                        <div class="mb-6">
+                            <label class="font-medium text-slate-800 block mb-3 text-sm sm:text-base leading-relaxed">
+                                5. อาการเวียนศีรษะนี้ ส่งผลกระทบต่อการทำงาน หรือการใช้ชีวิตประจำวันของคุณในระดับปานกลางถึงมาก?
+                            </label>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6">
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q5" value="1" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>ส่งผลกระทบอย่างมาก</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                    <input type="radio" name="q5" value="0" class="w-4 h-4 text-teal-600 focus:ring-teal-500">
+                                    <span>กระทบเล็กน้อย / ไม่กระทบ</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button id="submit-quiz" class="w-full py-3.5 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-xl shadow-sm transition-colors flex items-center justify-center text-sm sm:text-base">
+                            <i class="fa-solid fa-chart-pie mr-2"></i> ประมวลผลแบบประเมิน
+                        </button>
+                    </form>
+
+                    <!-- Result Display Box -->
+                    <div id="quiz-result" class="hidden mt-6 p-6 rounded-xl border">
+                        <h3 id="result-title" class="text-lg sm:text-xl font-bold mb-2 leading-snug"></h3>
+                        <p id="result-description" class="text-sm leading-relaxed mb-4"></p>
+                        <div id="result-advice" class="bg-white/80 p-4 rounded-lg text-xs md:text-sm border text-slate-700 leading-relaxed"></div>
+                        <button id="reset-quiz" class="mt-4 text-xs text-slate-500 hover:text-slate-800 underline">
+                            ทำแบบประเมินใหม่อีกครั้ง
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: การดูแลและกายภาพฟื้นฟู -->
+        <section id="rehab" class="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-12">
+                <span class="text-xs font-semibold tracking-wider text-teal-600 uppercase bg-teal-100/80 px-3 py-1 rounded-full">Self-Care & VRT</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mt-3 mb-2 leading-snug">การดูแลและกายภาพฟื้นฟู</h2>
+                <p class="text-slate-600 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
+                    หัวใจสำคัญของการรักษา PPPD คือการฝึกสมองให้ชิน (Habituation) และลดความกังวลของระบบประสาท
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Card 1: Vestibular Rehabilitation -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-teal-50 text-teal-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-person-chalkboard"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 leading-snug">1. ฝึกบริหารระบบทรงตัว (VRT)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            การฝึกเคลื่อนไหวตา หัว และลำตัวเบาๆ อย่างเป็นระบบ ช่วยฝึกให้สมองเลิกตระหนกต่อสัญญาณการเคลื่อนไหว
+                        </p>
+                        <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-3.5 rounded-lg leading-relaxed">
+                            <li>มองเป้าหมายตรงหน้าแล้วหันหัวซ้าย-ขวา ช้าๆ</li>
+                            <li>ก้าวเดินบนพื้นผิวต่างระดับอย่างปลอดภัย</li>
+                            <li>ฝึกทีละนิด วันละ 5-10 นาที (อย่าหักโหม)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2: Grounding & Breathing -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 leading-snug">2. เทคนิคผ่อนคลาย (Grounding)</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            เมื่อเริ่มรู้สึกเวียนหัวหรือตื่นตระหนก ระบบประสาทอัตโนมัติจะทำงานไวเกินไป การผ่อนคลายจะช่วยดึงสมองกลับสู่ความมั่นคง
+                        </p>
+                        <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-3.5 rounded-lg leading-relaxed">
+                            <li>หายใจเข้าลึก 4 วินาที - ออกยาว 6 วินาที</li>
+                            <li>ใช้เท้าเหยียบพื้นให้แน่น รับรู้สัมผัสของพื้นดิน</li>
+                            <li>บอกตัวเองเสมอว่า "นี่คืออาการ PPPD ไม่ใช่อันตรายร้ายแรง"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 3: Lifestyle Adjustment -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-bed"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-800 mb-2 leading-snug">3. ปรับพฤติกรรมและการนอน</h3>
+                        <p class="text-sm text-slate-600 leading-relaxed mb-4">
+                            การพักผ่อนไม่เพียงพอและความเครียดคือตัวกระตุ้นหลักที่ทำให้อาการเวียนศีรษะแย่ลงอย่างเห็นได้ชัด
+                        </p>
+                        <ul class="text-xs text-slate-600 space-y-2 list-disc list-inside bg-slate-50 p-3.5 rounded-lg leading-relaxed">
+                            <li>นอนหลับพักผ่อนให้เป็นเวลา 7-8 ชั่วโมง</li>
+                            <li>ลดการจ้องจอมือถือต่อเนื่องเป็นเวลานาน</li>
+                            <li>ออกกำลังกายเบาๆ เช่น การเดินช้าๆ</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: พื้นที่แบ่งปันและกำลังใจ (Community) -->
+        <section id="community" class="py-12 sm:py-16 bg-gradient-to-b from-teal-50/50 to-slate-100/50 border-t border-slate-200/60">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-10">
+                    <span class="text-xs font-semibold tracking-wider text-teal-600 uppercase bg-teal-100/80 px-3 py-1 rounded-full">Community & Support</span>
+                    <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mt-3 mb-2 leading-snug">พื้นที่แบ่งปันประสบการณ์ & กำลังใจ</h2>
+                    <p class="text-sm text-slate-600 leading-relaxed">เรื่องราวของคุณอาจเป็นแสงสว่างและกำลังใจให้อีกหลายๆ คนที่กำลังเผชิญโรคนี้อยู่</p>
+                </div>
+
+                <!-- Post Form -->
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200 mb-8">
+                    <h3 class="text-base font-semibold text-slate-800 mb-4 flex items-center gap-2 leading-snug">
+                        <i class="fa-solid fa-pen-to-square text-teal-600"></i> เขียนข้อความแบ่งปัน
+                    </h3>
+                    <form id="post-form" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">ชื่อ / นามแฝง</label>
+                                <input type="text" id="post-author" required placeholder="เช่น คุณนักสู้, บี" class="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-600 mb-1">หมวดหมู่</label>
+                                <select id="post-category" class="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500">
+                                    <option value="ส่งกำลังใจ">ส่งกำลังใจ</option>
+                                    <option value="แชร์ประสบการณ์รักษา">แชร์ประสบการณ์รักษา</option>
+                                    <option value="สอบถามอาการ">สอบถามอาการ</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-slate-600 mb-1">ข้อความของคุณ</label>
+                            <textarea id="post-content" rows="3" required placeholder="พิมพ์ข้อความของคุณที่นี่..." class="w-full px-3 py-2 text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="submit" class="px-5 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-medium text-sm rounded-xl shadow-sm transition-colors flex items-center gap-2">
+                                <i class="fa-solid fa-paper-plane"></i> โพสต์ข้อความ
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Posts List Container -->
+                <div id="posts-container" class="space-y-4">
+                    <!-- Posts will be rendered here via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: โรงพยาบาลและคลินิกทรงตัวในไทย -->
+        <section id="hospitals" class="py-12 sm:py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-12">
+                <span class="text-xs font-semibold tracking-wider text-teal-600 uppercase bg-teal-100/80 px-3 py-1 rounded-full">Medical Care</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mt-3 mb-2 leading-snug">ศูนย์ตรวจและรักษาโรคทรงตัวในไทย</h2>
+                <p class="text-sm text-slate-600 max-w-lg mx-auto leading-relaxed">
+                    รายชื่อโรงพยาบาลที่มีคลินิกโรคเวียนศีรษะและการทรงตัว (Neuro-Otology / Balance Clinic)
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Hospital Item 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-medium bg-sky-100 text-sky-700 px-2.5 py-1 rounded-md">โรงพยาบาลรัฐบาล</span>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 mb-1.5 leading-snug">โรงพยาบาลจุฬาลงกรณ์ สภากาชาดไทย</h3>
+                        <p class="text-xs text-teal-600 font-medium mb-3"><i class="fa-solid fa-stethoscope mr-1"></i> คลินิกเวียนศีรษะและการทรงตัว (ENT)</p>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                            ให้บริการตรวจวินิจฉัยโรคหูและระบบประสาททรงตัวโดยแพทย์ผู้เชี่ยวชาญเฉพาะทาง
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-600 flex justify-between items-center">
+                        <span><i class="fa-solid fa-phone text-teal-500 mr-1"></i> 02-256-4000</span>
+                        <span class="text-slate-400">กรุงเทพฯ</span>
+                    </div>
+                </div>
+
+                <!-- Hospital Item 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-medium bg-sky-100 text-sky-700 px-2.5 py-1 rounded-md">โรงพยาบาลรัฐบาล</span>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 mb-1.5 leading-snug">โรงพยาบาลศิริราช</h3>
+                        <p class="text-xs text-teal-600 font-medium mb-3"><i class="fa-solid fa-stethoscope mr-1"></i> ศูนย์ตรวจการทรงตัว ภาควิชาโสต นาสิก ลาริงซ์วิทยา</p>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                            มีเครื่องมือตรวจวัดระบบการทรงตัวและสายตา (VNG) ที่ครบครัน
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-600 flex justify-between items-center">
+                        <span><i class="fa-solid fa-phone text-teal-500 mr-1"></i> 02-419-7000</span>
+                        <span class="text-slate-400">กรุงเทพฯ</span>
+                    </div>
+                </div>
+
+                <!-- Hospital Item 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-100 shadow-sm flex flex-col justify-between">
+                    <div>
+                        <span class="text-xs font-medium bg-sky-100 text-sky-700 px-2.5 py-1 rounded-md">โรงพยาบาลรัฐบาล</span>
+                        <h3 class="text-lg font-bold text-slate-800 mt-3 mb-1.5 leading-snug">โรงพยาบาลรามาธิบดี</h3>
+                        <p class="text-xs text-teal-600 font-medium mb-3"><i class="fa-solid fa-stethoscope mr-1"></i> คลินิกโรคหู นาสิก ลาริงซ์ และระบบประสาท</p>
+                        <p class="text-xs text-slate-500 leading-relaxed mb-4">
+                            เชี่ยวชาญการดูแลผู้ป่วยโรคเวียนศีรษะเรื้อรังและการฝึกกายภาพฟื้นฟู
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-slate-100 text-xs text-slate-600 flex justify-between items-center">
+                        <span><i class="fa-solid fa-phone text-teal-500 mr-1"></i> 02-201-1000</span>
+                        <span class="text-slate-400">กรุงเทพฯ</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctor Visit Tip Box -->
+            <div class="mt-8 bg-teal-50/60 rounded-2xl p-6 border border-teal-100">
+                <h4 class="font-bold text-slate-800 mb-2 flex items-center text-sm md:text-base leading-snug">
+                    <i class="fa-solid fa-circle-info text-teal-600 mr-2"></i> คำแนะนำในการเตรียมตัวพบแพทย์
+                </h4>
+                <ul class="text-xs md:text-sm text-slate-600 space-y-2 list-disc list-inside leading-relaxed">
+                    <li>จดบันทึกประวัติอาการ: เริ่มเป็นตั้งแต่เมื่อไหร่ อาการกระตุ้นจากอะไรบ้าง</li>
+                    <li>นำผลการตรวจหู หรือผลสแกนสมอง (MRI/CT) เดิมติดตัวไปด้วย (ถ้ามี)</li>
+                    <li>แจ้งรายการยาที่รับประทานอยู่ปัจจุบันอย่างละเอียด</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-slate-300 py-12 border-t border-slate-700">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-8 mb-8 pb-8 border-b border-slate-700">
+                <div>
+                    <div class="flex items-center space-x-2 mb-3">
+                        <i class="fa-solid fa-heart-pulse text-teal-400 text-xl"></i>
+                        <span class="text-lg font-bold text-white tracking-normal">PPPD Thailand Society</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed max-w-sm">
+                        กลุ่มพื้นที่แบ่งปันข้อมูลและสร้างกำลังใจให้ผู้ป่วยโรคเวียนศีรษะเรื้อรังจากระบบประสาทอัตโนมัติในประเทศไทย
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-sm font-semibold text-white mb-2 leading-snug">ข้อความปฏิเสธความรับผิดชอบ (Medical Disclaimer)</h5>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        ข้อมูลบนเว็บไซต์นี้จัดทำขึ้นเพื่อการศึกษาและการดูแลตนเองเบื้องต้นเท่านั้น **ไม่สามารถใช้อ้างอิงแทนการวินิจฉัยหรือการรักษาทางการแพทย์** หากคุณมีอาการเวียนศีรษะรุนแรง มีอาการชา อ่อนแรง หรือพูดไม่ชัด ควรรีบพบแพทย์โดยทันที
+                    </p>
+                </div>
+            </div>
+            <div class="text-center text-xs text-slate-500">
+                &copy; 2026 PPPD Thailand Society. Designed for patient care and comfort.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script>
+        // Mobile Navigation Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Interactive Self-Assessment Quiz Logic
+        const submitQuizBtn = document.getElementById('submit-quiz');
+        const resetQuizBtn = document.getElementById('reset-quiz');
+        const quizResultBox = document.getElementById('quiz-result');
+        const resultTitle = document.getElementById('result-title');
+        const resultDescription = document.getElementById('result-description');
+        const resultAdvice = document.getElementById('result-advice');
+
+        submitQuizBtn.addEventListener('click', () => {
+            const quizForm = document.getElementById('quiz-form');
+            const q1 = quizForm.querySelector('input[name="q1"]:checked');
+            const q2 = quizForm.querySelector('input[name="q2"]:checked');
+            const q3 = quizForm.querySelector('input[name="q3"]:checked');
+            const q4 = quizForm.querySelector('input[name="q4"]:checked');
+            const q5 = quizForm.querySelector('input[name="q5"]:checked');
+
+            if (!q1 || !q2 || !q3 || !q4 || !q5) {
+                alert('กรุณาตอบคำถามให้ครบทั้ง 5 ข้อครับ');
+                return;
+            }
+
+            const score = parseInt(q1.value) + parseInt(q2.value) + parseInt(q3.value) + parseInt(q4.value) + parseInt(q5.value);
+
+            quizResultBox.classList.remove('hidden');
+
+            if (score >= 4) {
+                quizResultBox.className = "mt-6 p-6 rounded-xl border bg-teal-50 border-teal-200 text-teal-900";
+                resultTitle.textContent = "ความเสี่ยงสูง / อาการเข้าข่าย PPPD";
+                resultDescription.textContent = "ลักษณะอาการของคุณเข้าข่ายโรค PPPD เป็นอย่างมาก (เวียนศีรษะโคลงเคลงเรื้อรัง ไวต่อสิ่งกระตุ้นทางสายตา และแย่ลงเมื่อยืน/เดิน)";
+                resultAdvice.innerHTML = "<strong>คำแนะนำ:</strong> ควรนัดหมายพบแพทย์เฉพาะทางด้านหู หรือระบบประสาท (Neuro-Otologist) ที่ศูนย์ทรงตัวของโรงพยาบาล เพื่อรับการตรวจวินิจฉัยอย่างละเอียดและการกายภาพฟื้นฟู (VRT)";
+            } else if (score >= 2) {
+                quizResultBox.className = "mt-6 p-6 rounded-xl border bg-amber-50 border-amber-200 text-amber-900";
+                resultTitle.textContent = "มีความเสี่ยงปานกลาง";
+                resultDescription.textContent = "คุณมีบางอาการที่สอดคล้องกับ PPPD แต่อาจเกิดจากสาเหตุอื่นร่วมด้วย เช่น ไมเกรน หินปูนในหู หรือความเครียด";
+                resultAdvice.innerHTML = "<strong>คำแนะนำ:</strong> แนะนำให้จดบันทึกอาการประจำวัน และปรึกษาแพทย์เพื่อแยกโรคหูชั้นในอื่นๆ ออกไป";
+            } else {
+                quizResultBox.className = "mt-6 p-6 rounded-xl border bg-slate-50 border-slate-200 text-slate-800";
+                resultTitle.textContent = "ความเสี่ยงต่ำ";
+                resultDescription.textContent = "อาการของคุณในปัจจุบันยังไม่เข้าข่ายโรค PPPD ชัดเจน";
+                resultAdvice.innerHTML = "<strong>คำแนะนำ:</strong> หากยังมีอาการเวียนศีรษะรบกวน ควรพักผ่อนให้เพียงพอ และพบแพทย์ทั่วไปเพื่อตรวจประเมินเบื้องต้น";
+            }
+
+            // Scroll gently to result
+            quizResultBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        resetQuizBtn.addEventListener('click', () => {
+            document.getElementById('quiz-form').reset();
+            quizResultBox.classList.add('hidden');
+        });
+
+        // Default seed posts for community board
+        const defaultPosts = [
+            {
+                id: 1,
+                author: "คุณนก (สมาชิก)",
+                category: "แชร์ประสบการณ์รักษา",
+                content: "เคยเป็นหนักจนไม่กล้าเดินห้างเลยค่ะ รู้สึกเวียนหัวเหมือนจะล้ม พอกายภาพฝึกมองเป้าหมายวันละ 10 นาที ร่วมกับทำใจสบายๆ ตอนนี้ผ่านมาร่วม 6 เดือน เดินห้างได้ปกติแล้ว เป็นกำลังใจให้ทุกคนนะคะ!",
+                date: "2026-03-15"
+            },
+            {
+                id: 2,
+                author: "พี่เอก",
+                category: "ส่งกำลังใจ",
+                content: "ช่วงแรกที่เป็นยอมรับว่ากังวลมาก หมอบอกว่า PPPD ไม่ทำให้เป็นอันตรายถึงชีวิต แค่สมองตั้งค่าผิดพลาด พอเลิกกลัวอาการก็ค่อยๆ ดีขึ้นครับ สู้ๆ ครับทุกคน",
+                date: "2026-03-28"
+            }
+        ];
+
+        // Load posts from LocalStorage or seed defaults
+        function getPosts() {
+            const saved = localStorage.getItem('pppd_posts');
+            if (saved) {
+                try {
+                    return JSON.parse(saved);
+                } catch (e) {
+                    return defaultPosts;
+                }
+            }
+            return defaultPosts;
+        }
+
+        function savePosts(posts) {
+            localStorage.setItem('pppd_posts', JSON.stringify(posts));
+        }
+
+        function renderPosts() {
+            const postsContainer = document.getElementById('posts-container');
+            const posts = getPosts();
+
+            postsContainer.innerHTML = '';
+
+            posts.forEach(post => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-5 rounded-xl border border-slate-100 shadow-sm';
+                card.innerHTML = `
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex items-center gap-2">
+                            <div class="w-8 h-8 rounded-full bg-teal-100 text-teal-700 font-bold flex items-center justify-center text-xs">
+                                ${post.author.charAt(0)}
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-bold text-slate-800">${post.author}</h4>
+                                <span class="text-[10px] text-slate-400">${post.date}</span>
+                            </div>
+                        </div>
+                        <span class="text-xs px-2.5 py-0.5 rounded-full bg-teal-50 text-teal-700 font-medium border border-teal-100">
+                            ${post.category}
+                        </span>
+                    </div>
+                    <p class="text-sm text-slate-600 leading-relaxed mt-2">${post.content}</p>
+                `;
+                postsContainer.appendChild(card);
+            });
+        }
+
+        // Handle Post Submission
+        const postForm = document.getElementById('post-form');
+        postForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const authorInput = document.getElementById('post-author');
+            const categorySelect = document.getElementById('post-category');
+            const contentInput = document.getElementById('post-content');
+
+            const newPost = {
+                id: Date.now(),
+                author: authorInput.value.trim(),
+                category: categorySelect.value,
+                content: contentInput.value.trim(),
+                date: new Date().toISOString().split('T')[0]
+            };
+
+            const posts = getPosts();
+            posts.unshift(newPost);
+            savePosts(posts);
+
+            // Reset form and update UI
+            contentInput.value = '';
+            authorInput.value = '';
+            renderPosts();
+        });
+
+        // Initialize Page
+        window.addEventListener('DOMContentLoaded', () => {
+            renderPosts();
+        });
+    </script>
+</body>
+</html>
